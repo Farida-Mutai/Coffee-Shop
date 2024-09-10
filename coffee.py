@@ -1,28 +1,17 @@
+class Order:
+    pass  # Define Order class as needed
+
 class Coffee:
-    def __init__(self, name, size, price, ingredients=[]):
-        self._name = None  # Placeholder for name validation
-        self.name = name  # Triggers the setter for validation
-        self.size = size
-        self.price = price
-        self.ingredients = ingredients
+    _all_orders = []  # Class variable to keep track of all orders
 
-    @property
-    def name(self):
-        return self._name
+    def __init__(self, name):
+        self.name = name
 
-    @name.setter
-    def name(self, value):
-        if isinstance(value, str) and len(value) >= 3:
-            self._name = value
-        else:
-            raise ValueError("Coffee name must be at least 3 characters long.")
+    def add_order(self, order):
+        Coffee._all_orders.append(order)
 
-    def calculate_price(self):
-        return self.price
+    def orders(self):
+        return [order for order in Coffee._all_orders if order.coffee == self]
 
-    def describe_coffee(self):
-        ingredients_str = ', '.join(self.ingredients)
-        return f"{self.size} {self.name} with {ingredients_str} - ${self.price}"
-
-    def __repr__(self):
-        return f"Coffee({self.name}, {self.size}, ${self.price})"
+    def customers(self):
+        return list(set(order.customer for order in self.orders()))
