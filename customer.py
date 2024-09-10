@@ -1,16 +1,26 @@
 class Customer:
     def __init__(self, name, email, phone_number=None):
-        self.name = name
+        self._name = None  # Placeholder for name validation
+        self.name = name  # Triggers the setter for validation
         self.email = email
         self.phone_number = phone_number
-        self.orders = []  # List to store the customer's orders
+        self.orders = []
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str) and 1 <= len(value) <= 15:
+            self._name = value
+        else:
+            raise ValueError("Name must be a string between 1 and 15 characters.")
 
     def place_order(self, order):
-        """Add an order to the customer's order history."""
         self.orders.append(order)
 
     def get_order_history(self):
-        """Return a list of all past orders."""
         return self.orders
 
     def __repr__(self):
