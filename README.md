@@ -100,6 +100,13 @@ Test order creation: Ensures that an order can be created with a valid Customer,
 Test invalid prices: Verifies that creating an order with an invalid price (less than 1.0 or greater than 10.0) raises an exception.
 Test customer and coffee access: Ensures that the customer and coffee properties return the correct instances for an order.
 
+### TO RUN THE TEST
+Set PYTHONPATH in the Terminal:
+
+export PYTHONPATH=.
+
+Then do the Pytest
+
 #### CONTACTS
 
 Any challenge you may contact me farida.mutai@student.moringaschool.com

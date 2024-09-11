@@ -3,10 +3,13 @@ from coffee import Coffee
 from order import Order  
 from customer import Customer  
 
-def test_coffee_name_validation():
+def test_customer_name_validation():
     with pytest.raises(ValueError):
-        Coffee("Co")
-    Coffee("Coffee")
+        Customer("")
+    with pytest.raises(ValueError):
+        Customer("A" * 16)
+    Customer("ValidName")
+
 
 def test_coffee_orders():
     coffee = Coffee("Coffee")
